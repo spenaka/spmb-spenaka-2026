@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMB SMP Negeri 1 Kajoran — Tahun Ajaran 2026/2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-dark: #0C447C;
+      --blue-mid: #185FA5;
+      --blue-light: #378ADD;
+      --blue-pale: #E6F1FB;
+      --blue-soft: #B5D4F4;
+      --text-primary: #1a1a2e;
+      --text-secondary: #5f6c84;
+      --text-muted: #9aa3b2;
+      --bg: #f4f7fb;
+      --white: #ffffff;
+      --border: rgba(0,0,0,0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* Ganti src ini dengan foto gedung sekolah */
+      background: url('foto-gedung.jpg') center/cover no-repeat;
+      filter: brightness(0.38);
+      z-index: 0;
+    }
+
+    /* Fallback jika foto belum ada */
+    .hero-bg-fallback {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #042C53 0%, #0C447C 50%, #185FA5 100%);
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(4,44,83,0.98) 0%, rgba(4,44,83,0.5) 60%, transparent 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem 2rem 2.5rem;
+      max-width: 860px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .school-identity {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-wrap {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 2px solid rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Ganti src ini dengan logo sekolah */
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo-placeholder {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      line-height: 1.3;
+      padding: 4px;
+    }
+
+    .school-name h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .school-name p {
+      font-size: 13px;
+      color: var(--blue-soft);
+      margin-top: 3px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--blue-soft);
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      letter-spacing: 0.4px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat .num {
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .hero-stat .lbl {
+      font-size: 12px;
+      color: var(--blue-soft);
+      margin-top: 3px;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.18);
+      align-self: stretch;
+    }
+
+    /* ── NAV PILLS ── */
+    .nav-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--blue-mid);
+      border-bottom-color: var(--blue-mid);
+    }
+
+    /* ── MAIN ── */
+    .main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+    }
+
+    .section { margin-bottom: 2.5rem; }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    /* ── JADWAL TIMELINE ── */
+    .timeline { display: flex; flex-direction: column; }
+
+    .tl-row {
+      display: grid;
+      grid-template-columns: 150px 32px 1fr;
+      gap: 0 1rem;
+      align-items: start;
+    }
+
+    .tl-date {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-align: right;
+      padding-top: 4px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .tl-axis {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tl-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2.5px solid var(--blue-mid);
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: background .2s;
+    }
+
+    .tl-dot.now {
+      background: var(--blue-mid);
+      box-shadow: 0 0 0 4px var(--blue-pale);
+    }
+
+    .tl-line {
+      flex: 1;
+      width: 2px;
+      background: var(--border);
+      min-height: 32px;
+      margin: 4px 0;
+    }
+
+    .tl-body { padding-bottom: 28px; }
+
+    .tl-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .tl-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+
+    .tl-badge {
+      display: inline-block;
+      background: var(--blue-pale);
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
+
+    /* ── ALUR STEPS ── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .step-item {
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      padding: 1.2rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-item::after {
+      content: '→';
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 14px;
+      z-index: 1;
+    }
+
+    .step-item:last-child::after { display: none; }
+
+    .step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--blue-mid);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+    }
+
+    .step-icon {
+      font-size: 22px;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .step-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── DOKUMEN ── */
+    .doc-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .doc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+
+    .doc-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .doc-text .doc-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .doc-text .doc-note {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .doc-tag {
+      margin-left: auto;
+      align-self: center;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    .doc-tag.wajib {
+      background: #FEF3C7;
+      color: #92400E;
+    }
+
+    .doc-tag.opsional {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    /* ── KUOTA ── */
+    .kuota-wrap {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .kuota-number {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .kuota-number .big {
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--blue-mid);
+      line-height: 1;
+    }
+
+    .kuota-number .unit {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .kuota-divider {
+      width: 1px;
+      height: 80px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .kuota-info {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .kuota-info p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .kuota-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-pale);
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-top: 12px;
+    }
+
+    /* ── KONTAK ── */
+    .address-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.25rem;
+      border: 1px solid var(--border);
+    }
+
+    .address-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .address-text p {
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    .address-text .label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .panitia-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
+    }
+
+    .contact-list { display: flex; flex-direction: column; }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue-dark);
+      flex-shrink: 0;
+    }
+
+    .contact-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .contact-phone {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .contact-wa {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #22C55E;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+
+    .contact-wa:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--blue-dark);
+      color: var(--blue-soft);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    footer strong { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero-content { padding: 2rem 1.25rem 2rem; }
+      .main { padding: 1.5rem 1.25rem 2.5rem; }
+      .nav-inner { padding: 0 1rem; }
+      .tl-row { grid-template-columns: 110px 24px 1fr; gap: 0 8px; }
+      .tl-date { font-size: 12px; }
+      .kuota-number .big { font-size: 48px; }
+      .hero-stat .num { font-size: 24px; }
+      .hero-stats { gap: 1.2rem; }
+      .school-name h1 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-fallback"></div>
+    <!--
+      PETUNJUK FOTO GEDUNG:
+      1. Simpan foto gedung dengan nama: foto-gedung.jpg (di folder yang sama dengan index.html)
+      2. Hapus tanda komentar di bawah ini (hapus /* dan */) agar foto aktif:
+    -->
+    <!-- <div class="hero-bg"></div> -->
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="school-identity">
+        <div class="logo-wrap">
+          <!--
+            PETUNJUK LOGO:
+            1. Simpan logo sekolah dengan nama: logo.png (di folder yang sama dengan index.html)
+            2. Hapus tanda komentar di bawah ini:
+          -->
+          <!-- <img src="logo.png" alt="Logo SMP Negeri 1 Kajoran" /> -->
+          <div class="logo-placeholder">LOGO<br>SEKOLAH</div>
+        </div>
+        <div class="school-name">
+          <h1>SMP Negeri 1 Kajoran</h1>
+          <p>Desa Sangen, Kec. Kajoran, Kab. Magelang</p>
+        </div>
+      </div>
+      <div class="hero-tag">📋 Penerimaan Murid Baru — Tahun Ajaran 2026/2027</div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">224</div>
+          <div class="lbl">Kuota Siswa</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <div class="num">19 Mei</div>
+          <div class="lbl">Mulai Pendaftaran</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <div class="num">24 Mei</div>
+          <div class="lbl">Pengumuman</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <nav class="nav-bar" aria-label="Menu bagian">
+    <div class="nav-inner">
+      <a href="#jadwal" class="nav-link">📅 Jadwal</a>
+      <a href="#alur" class="nav-link">🔄 Alur</a>
+      <a href="#dokumen" class="nav-link">📄 Dokumen</a>
+      <a href="#kuota" class="nav-link">👥 Kuota</a>
+      <a href="#kontak" class="nav-link">📞 Kontak</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- JADWAL -->
+    <section class="section" id="jadwal">
+      <p class="section-title">Jadwal Pendaftaran</p>
+      <div class="card">
+        <div class="timeline">
+
+          <div class="tl-row">
+            <div class="tl-date">19 – 22 Mei 2026</div>
+            <div class="tl-axis"><div class="tl-dot now"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-label">Pendaftaran</div>
+              <div class="tl-sub">Pengisian formulir dan pengumpulan berkas persyaratan kepada panitia</div>
+              <div class="tl-badge">Buka Pendaftaran</div>
+            </div>
+          </div>
+
+          <div class="tl-row">
+            <div class="tl-date">23 Mei 2026</div>
+            <div class="tl-axis"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-label">Analisis Berkas</div>
+              <div class="tl-sub">Verifikasi kelengkapan dan seleksi administrasi oleh panitia</div>
+            </div>
+          </div>
+
+          <div class="tl-row">
+            <div class="tl-date">24 Mei 2026</div>
+            <div class="tl-axis"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div class="tl-body">
+              <div class="tl-label">Pengumuman Hasil</div>
+              <div class="tl-sub">Daftar calon siswa yang dinyatakan diterima diumumkan</div>
+            </div>
+          </div>
+
+          <div class="tl-row">
+            <div class="tl-date">24 – 29 Mei 2026</div>
+            <div class="tl-axis"><div class="tl-dot"></div></div>
+            <div class="tl-body" style="padding-bottom: 0;">
+              <div class="tl-label">Daftar Ulang</div>
+              <div class="tl-sub">Konfirmasi keikutsertaan dan melengkapi administrasi akhir</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ALUR PENDAFTARAN -->
+    <section class="section" id="alur">
+      <p class="section-title">Alur Pendaftaran</p>
+      <div class="card" style="padding: 1.5rem 1.25rem;">
+        <div class="steps-grid">
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <span class="step-icon">📝</span>
+            <div class="step-title">Isi Formulir</div>
+            <div class="step-desc">Ambil & isi formulir pendaftaran dari sekolah</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <span class="step-icon">📁</span>
+            <div class="step-title">Siapkan Berkas</div>
+            <div class="step-desc">Lengkapi semua dokumen yang disyaratkan</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <span class="step-icon">📬</span>
+            <div class="step-title">Serahkan Berkas</div>
+            <div class="step-desc">Kumpulkan ke panitia 19–22 Mei 2026</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <span class="step-icon">🔍</span>
+            <div class="step-title">Verifikasi</div>
+            <div class="step-desc">Panitia memeriksa kelengkapan berkas (23 Mei)</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <span class="step-icon">📣</span>
+            <div class="step-title">Pengumuman</div>
+            <div class="step-desc">Hasil seleksi diumumkan 24 Mei 2026</div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">6</div>
+            <span class="step-icon">✅</span>
+            <div class="step-title">Daftar Ulang</div>
+            <div class="step-desc">Konfirmasi keikutsertaan 24–29 Mei 2026</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOKUMEN -->
+    <section class="section" id="dokumen">
+      <p class="section-title">Persyaratan Dokumen</p>
+      <div class="card">
+        <div class="doc-list">
+
+          <div class="doc-item">
+            <div class="doc-icon">🪪</div>
+            <div class="doc-text">
+              <div class="doc-title">Akta Kelahiran</div>
+              <div class="doc-note">Fotokopi akta kelahiran yang masih berlaku</div>
+            </div>
+            <span class="doc-tag wajib">Wajib</span>
+          </div>
+
+          <div class="doc-item">
+            <div class="doc-icon">🎓</div>
+            <div class="doc-text">
+              <div class="doc-title">Ijazah / SKHUN SD / MI</div>
+              <div class="doc-note">Fotokopi ijazah atau Surat Keterangan Hasil Ujian Nasional</div>
+            </div>
+            <span class="doc-tag wajib">Wajib</span>
+          </div>
+
+          <div class="doc-item">
+            <div class="doc-icon">📒</div>
+            <div class="doc-text">
+              <div class="doc-title">Rapor Kelas 4, 5, dan 6</div>
+              <div class="doc-note">Fotokopi rapor semester lengkap kelas 4 sampai 6</div>
+            </div>
+            <span class="doc-tag wajib">Wajib</span>
+          </div>
+
+          <div class="doc-item">
+            <div class="doc-icon">🏠</div>
+            <div class="doc-text">
+              <div class="doc-title">Kartu Keluarga (KK)</div>
+              <div class="doc-note">Fotokopi Kartu Keluarga yang masih berlaku</div>
+            </div>
+            <span class="doc-tag wajib">Wajib</span>
+          </div>
+
+          <div class="doc-item">
+            <div class="doc-icon">📷</div>
+            <div class="doc-text">
+              <div class="doc-title">Pas Foto 3×4</div>
+              <div class="doc-note">Foto terbaru, 2 lembar, latar belakang merah atau biru</div>
+            </div>
+            <span class="doc-tag wajib">Wajib</span>
+          </div>
+
+          <div class="doc-item">
+            <div class="doc-icon">📍</div>
+            <div class="doc-text">
+              <div class="doc-title">Surat Keterangan Domisili</div>
+              <div class="doc-note">Dari kelurahan/desa sesuai tempat tinggal</div>
+            </div>
+            <span class="doc-tag wajib">Wajib</span>
+          </div>
+
+          <div class="doc-item" style="border: 1px dashed #22C55E; background: #F0FDF4;">
+            <div class="doc-icon" style="background: #DCFCE7;">💳</div>
+            <div class="doc-text">
+              <div class="doc-title">Fotokopi KIP / PIP / PKH</div>
+              <div class="doc-note">Kartu Indonesia Pintar, Program Indonesia Pintar, atau Program Keluarga Harapan — jika dimiliki</div>
+            </div>
+            <span class="doc-tag opsional">Jika Ada</span>
+          </div>
+
+          <div class="doc-item" style="border: 1px dashed #22C55E; background: #F0FDF4;">
+            <div class="doc-icon" style="background: #DCFCE7;">🏆</div>
+            <div class="doc-text">
+              <div class="doc-title">Piagam Penghargaan / Kejuaraan</div>
+              <div class="doc-note">Minimal Juara 1 tingkat kecamatan, dalam bidang akademik maupun non-akademik — jika dimiliki</div>
+            </div>
+            <span class="doc-tag opsional">Jika Ada</span>
+          </div>
+
+        </div>
+
+        <div style="margin-top: 1rem; padding: 12px 14px; background: #FEF9C3; border-radius: 10px; border: 1px solid #FDE68A;">
+          <p style="font-size: 13px; color: #713F12; line-height: 1.6;">
+            ℹ️ <strong>Catatan:</strong> Dokumen berlabel <em>Wajib</em> harus diserahkan saat pendaftaran. Dokumen berlabel <em>Jika Ada</em> bersifat pendukung dan dapat memperkuat berkas pendaftaran. Konfirmasi kepada panitia untuk informasi terbaru.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KUOTA -->
+    <section class="section" id="kuota">
+      <p class="section-title">Kuota Penerimaan</p>
+      <div class="card">
+        <div class="kuota-wrap">
+          <div class="kuota-number">
+            <div class="big">224</div>
+            <div class="unit">siswa baru</div>
+          </div>
+          <div class="kuota-divider"></div>
+          <div class="kuota-info">
+            <p>
+              SMP Negeri 1 Kajoran membuka penerimaan sebanyak <strong>224 siswa baru</strong> untuk tahun ajaran 2026/2027. Pendaftaran dilayani berdasarkan urutan kelengkapan berkas dan hasil seleksi administrasi.
+            </p>
+            <div class="kuota-badge">
+              📅 Tahun Ajaran 2026/2027
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONTAK & LOKASI -->
+    <section class="section" id="kontak">
+      <p class="section-title">Kontak & Lokasi</p>
+      <div class="card">
+        <div class="address-row">
+          <div class="address-icon">🏫</div>
+          <div class="address-text">
+            <div class="label">Alamat Sekolah</div>
+            <p><strong>SMP Negeri 1 Kajoran</strong><br>Desa Sangen, Kec. Kajoran, Kab. Magelang<br>Jawa Tengah — Kode Pos 56163</p>
+          </div>
+        </div>
+
+        <div class="panitia-title">Panitia PMB</div>
+        <div class="contact-list">
+
+          <div class="contact-row">
+            <div class="avatar">DZ</div>
+            <div>
+              <div class="contact-name">Dewi Zulfa Indah</div>
+              <div class="contact-phone">📱 08xxxxxxxxxxx</div>
+            </div>
+            <!--
+              Ganti 08xxxxxxxxxxx dengan nomor HP lengkap untuk link WhatsApp:
+              Contoh: href="https://wa.me/6281234567890"
+            -->
+            <a class="contact-wa" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener">
+              💬 WhatsApp
+            </a>
+          </div>
+
+          <div class="contact-row">
+            <div class="avatar">EM</div>
+            <div>
+              <div class="contact-name">Elly Mastukhah</div>
+              <div class="contact-phone">📱 08xxxxxxxxx</div>
+            </div>
+            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">
+              💬 WhatsApp
+            </a>
+          </div>
+
+          <div class="contact-row">
+            <div class="avatar">IW</div>
+            <div>
+              <div class="contact-name">Isma Winarti</div>
+              <div class="contact-phone">📱 08xxxxxxxxx</div>
+            </div>
+            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">
+              💬 WhatsApp
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>SMP Negeri 1 Kajoran</strong><br>
+    Desa Sangen, Kec. Kajoran, Kab. Magelang 56163<br><br>
+    <span style="font-size: 12px; opacity: 0.7;">
+      Informasi Penerimaan Murid Baru Tahun Ajaran 2026/2027 &nbsp;·&nbsp;
+      Konten dapat berubah sewaktu-waktu. Hubungi panitia untuk konfirmasi terbaru.
+    </span>
+  </footer>
+
+  <script>
+    // Active nav highlight on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
