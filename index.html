@@ -86,23 +86,17 @@
     }
 
     .logo-wrap {
-      width: 72px;
-      height: 72px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.12);
-      border: 2px solid rgba(255,255,255,0.25);
+      background: #fff;
+      border: 3px solid rgba(255,255,255,0.6);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       flex-shrink: 0;
-    }
-
-    /* Ganti src ini dengan logo sekolah */
-    .logo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .logo-placeholder {
@@ -637,13 +631,7 @@
     <div class="hero-content">
       <div class="school-identity">
         <div class="logo-wrap">
-          <!--
-            PETUNJUK LOGO:
-            1. Simpan logo sekolah dengan nama: logo.png (di folder yang sama dengan index.html)
-            2. Hapus tanda komentar di bawah ini:
-          -->
-          <img src="logo.png" alt="Logo SMP Negeri 1 Kajoran" />
-          <div class="logo-placeholder">LOGO<br>SEKOLAH</div>
+          <img src="data:image/jpeg;base64,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" alt="Logo SMP Negeri 1 Kajoran" style="width:100%;height:100%;object-fit:contain;padding:4px;" />
         </div>
         <div class="school-name">
           <h1>SMP Negeri 1 Kajoran</h1>
