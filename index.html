@@ -162,6 +162,7 @@
 
     .hero-desc a:hover { text-decoration: underline; }
 
+    /* ── NAV ── */
     .nav-bar {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -178,6 +179,7 @@
       gap: 0;
       overflow-x: auto;
       scrollbar-width: none;
+      scroll-behavior: smooth;
     }
 
     .nav-inner::-webkit-scrollbar { display: none; }
@@ -273,7 +275,6 @@
       font-size: 13px;
     }
 
-    /* Badge dasar — tersembunyi, ditampilkan oleh JS */
     .jadwal-badge {
       display: none;
       font-size: 10px;
@@ -289,7 +290,6 @@
       color: #14532D;
     }
 
-    /* Titik hijau berkedip */
     .jadwal-badge.now::before {
       content: '';
       display: inline-block;
@@ -312,26 +312,12 @@
       color: #64748B;
     }
 
-    /* Baris yang sedang berjalan → highlight ringan */
-    .jadwal-table tr.row-active td {
-      background: #F0FDF4;
-    }
-
-    /* Baris yang sudah selesai → teks sedikit redup */
-    .jadwal-table tr.row-done td {
-      color: var(--text-muted);
-    }
-
-    .jadwal-table tr.row-done .date-col {
-      color: var(--text-muted);
-    }
+    .jadwal-table tr.row-active td { background: #F0FDF4; }
+    .jadwal-table tr.row-done td { color: var(--text-muted); }
+    .jadwal-table tr.row-done .date-col { color: var(--text-muted); }
 
     /* ── ALUR STEPS ── */
-    .alur-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .alur-list { display: flex; flex-direction: column; gap: 10px; }
 
     .alur-item {
       display: flex;
@@ -358,20 +344,10 @@
       margin-top: 1px;
     }
 
-    .alur-text {
-      font-size: 14px;
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
+    .alur-text { font-size: 14px; color: var(--text-primary); line-height: 1.6; }
     .alur-text strong { color: var(--blue-dark); }
 
-    .jalur-sub {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
+    .jalur-sub { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 
     .jalur-pill {
       display: inline-flex;
@@ -431,18 +407,8 @@
       font-size: 16px;
     }
 
-    .doc-text .doc-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .doc-text .doc-note {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-top: 2px;
-      line-height: 1.4;
-    }
+    .doc-text .doc-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .doc-text .doc-note { font-size: 12px; color: var(--text-secondary); margin-top: 2px; line-height: 1.4; }
 
     .doc-tag {
       margin-left: auto;
@@ -473,25 +439,9 @@
       text-align: center;
     }
 
-    .kuota-card .pct {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--blue-mid);
-      line-height: 1;
-    }
-
-    .kuota-card .jalur-name {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-top: 4px;
-    }
-
-    .kuota-card.highlight {
-      border-color: var(--blue-soft);
-      background: var(--blue-pale);
-    }
-
+    .kuota-card .pct { font-size: 36px; font-weight: 700; color: var(--blue-mid); line-height: 1; }
+    .kuota-card .jalur-name { font-size: 13px; font-weight: 600; color: var(--text-primary); margin-top: 4px; }
+    .kuota-card.highlight { border-color: var(--blue-soft); background: var(--blue-pale); }
     .kuota-card.highlight .pct { color: var(--blue-dark); }
 
     .domisili-detail {
@@ -543,40 +493,6 @@
     .info-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 
     /* ── KONTAK ── */
-    .address-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 14px;
-      background: var(--bg);
-      border-radius: var(--radius-sm);
-      margin-bottom: 1.25rem;
-      border: 1px solid var(--border);
-    }
-
-    .address-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--blue-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
-    .address-text p { font-size: 14px; color: var(--text-primary); line-height: 1.7; }
-
-    .address-text .label {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-muted);
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-    }
-
     .panitia-title {
       font-size: 12px;
       font-weight: 600;
@@ -696,7 +612,7 @@
 
   <!-- NAV -->
   <nav class="nav-bar" aria-label="Menu bagian">
-    <div class="nav-inner">
+    <div class="nav-inner" id="navInner">
       <a href="#jadwal" class="nav-link">📅 Jadwal</a>
       <a href="#alur" class="nav-link">🔄 Alur</a>
       <a href="#dokumen" class="nav-link">📄 Dokumen</a>
@@ -724,49 +640,49 @@
             <tr data-mulai="2026-03-30" data-selesai="2026-06-10">
               <td>
                 Pra SPMB &amp; Verifikasi Biodata
-                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">Sedang Berjalan</span>
               </td>
               <td class="date-col">30 Mar – 10 Jun 2026</td>
             </tr>
             <tr data-mulai="2026-05-04" data-selesai="2026-05-26">
               <td>
                 Verifikasi Prestasi
-                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">Sedang Berjalan</span>
               </td>
               <td class="date-col">4 – 26 Mei 2026</td>
             </tr>
             <tr data-mulai="2026-05-27" data-selesai="2026-05-29">
               <td>
                 Pengumuman &amp; Sanggah Prestasi
-                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">Sedang Berjalan</span>
               </td>
               <td class="date-col">27 – 29 Mei 2026</td>
             </tr>
             <tr data-mulai="2026-06-08" data-selesai="2026-06-10">
               <td>
                 Pendaftaran &amp; Verifikasi SMP
-                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">Sedang Berjalan</span>
               </td>
               <td class="date-col">8 – 10 Jun 2026</td>
             </tr>
             <tr data-mulai="2026-06-11" data-selesai="2026-06-11">
               <td>
                 Analisis Penerimaan
-                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">Sedang Berjalan</span>
               </td>
               <td class="date-col">11 Jun 2026</td>
             </tr>
             <tr data-mulai="2026-06-12" data-selesai="2026-06-12">
               <td>
                 Pengumuman Hasil Seleksi
-                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">Sedang Berjalan</span>
               </td>
               <td class="date-col">12 Jun 2026</td>
             </tr>
             <tr data-mulai="2026-06-12" data-selesai="2026-06-15">
               <td>
                 Daftar Ulang
-                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">Sedang Berjalan</span>
               </td>
               <td class="date-col">12 – 15 Jun 2026</td>
             </tr>
@@ -788,9 +704,7 @@
           </div>
           <div class="alur-item">
             <div class="alur-num">2</div>
-            <div class="alur-text">
-              Login menggunakan data yang terdaftar pada <strong>Dapodik / EMIS</strong>
-            </div>
+            <div class="alur-text">Login menggunakan data yang terdaftar pada <strong>Dapodik / EMIS</strong></div>
           </div>
           <div class="alur-item" style="flex-direction: column; gap: 8px;">
             <div style="display:flex;align-items:flex-start;gap:14px;">
@@ -989,7 +903,7 @@
       </div>
     </section>
 
-    <!-- KONTAK & LOKASI -->
+    <!-- KONTAK -->
     <section class="section" id="kontak">
       <p class="section-title">Kontak</p>
       <div class="card">
@@ -1037,10 +951,7 @@
 
   <script>
     // ── BADGE OTOMATIS BERDASARKAN TANGGAL ──
-    // Setiap <tr> di tabel jadwal harus memiliki:
-    //   data-mulai="YYYY-MM-DD"  dan  data-selesai="YYYY-MM-DD"
     (function () {
-      // Ambil tanggal hari ini (jam 00:00:00 agar perbandingan akurat)
       var today = new Date();
       today.setHours(0, 0, 0, 0);
 
@@ -1049,46 +960,51 @@
       rows.forEach(function (row) {
         var mulai   = new Date(row.dataset.mulai);
         var selesai = new Date(row.dataset.selesai);
-        selesai.setHours(23, 59, 59, 999); // akhir hari selesai
+        selesai.setHours(23, 59, 59, 999);
 
         var badge = row.querySelector('.jadwal-badge');
 
         if (today >= mulai && today <= selesai) {
-          // Sedang berjalan
           badge.textContent = 'Sedang Berjalan';
           badge.className = 'jadwal-badge now';
           badge.style.display = 'inline-block';
           row.classList.add('row-active');
-
         } else if (today > selesai) {
-          // Sudah selesai
           badge.textContent = '✓ Selesai';
           badge.className = 'jadwal-badge selesai';
           badge.style.display = 'inline-block';
           row.classList.add('row-done');
-
         } else {
-          // Belum dimulai — badge tersembunyi
           badge.style.display = 'none';
         }
       });
     })();
 
-    // ── ACTIVE NAV HIGHLIGHT ON SCROLL ──
-    var sections = document.querySelectorAll('section[id]');
-    var navLinks = document.querySelectorAll('.nav-link');
+    // ── ACTIVE NAV + AUTO-SCROLL KE TENGAH ──
+    (function () {
+      var sections = document.querySelectorAll('section[id]');
+      var navLinks = document.querySelectorAll('.nav-link');
+      var navInner = document.getElementById('navInner');
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          navLinks.forEach(function (link) {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-          });
-        }
-      });
-    }, { rootMargin: '-30% 0px -60% 0px' });
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (link) {
+              var isActive = link.getAttribute('href') === '#' + entry.target.id;
+              link.classList.toggle('active', isActive);
 
-    sections.forEach(function (s) { observer.observe(s); });
+              // Auto-scroll nav agar menu aktif selalu tampil di tengah layar HP
+              if (isActive) {
+                var scrollTo = link.offsetLeft - (navInner.offsetWidth / 2) + (link.offsetWidth / 2);
+                navInner.scrollTo({ left: scrollTo, behavior: 'smooth' });
+              }
+            });
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+
+      sections.forEach(function (s) { observer.observe(s); });
+    })();
   </script>
 
 </body>
