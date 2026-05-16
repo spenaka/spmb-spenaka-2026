@@ -182,7 +182,24 @@
 
     .nav-inner::-webkit-scrollbar { display: none; }
 
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
 
+    .nav-link:hover, .nav-link.active {
+      color: var(--blue-mid);
+      border-bottom-color: var(--blue-mid);
+    }
 
     .main {
       max-width: 860px;
@@ -190,7 +207,7 @@
       padding: 2rem 2rem 3rem;
     }
 
-    .section { margin-bottom: 2.5rem; display: none; }
+    .section { margin-bottom: 2.5rem; scroll-margin-top: 60px; }
 
     .section-title {
       font-size: 11px;
@@ -307,10 +324,6 @@
 
     .jadwal-table tr.row-done .date-col {
       color: var(--text-muted);
-    }
-
-    .section.active {
-      display: block;
     }
 
     /* ── ALUR STEPS ── */
@@ -655,10 +668,10 @@
         </div>
         <div class="school-name">
           <h1>SMP Negeri 1 Kajoran</h1>
-          <p>Desa Sangen, Kecamatan Kajoran,<br> Kab. Magelang</p>
+          <p>Desa Sangen, Kecamatan Kajoran, Kabupaten Magelang</p>
         </div>
       </div>
-      <div class="hero-tag" style="text-align:justify;">📋 Informasi Penerimaan Murid Baru — Tahun Pelajaran 2026/2027</div>
+      <div class="hero-tag" style="text-align:justify;">📋 Sistem Penerimaan Murid Baru (SPMB) — Tahun Pelajaran 2026/2027</div>
       <div class="hero-stats">
         <div class="hero-stat">
           <div class="num">Online</div>
@@ -681,15 +694,15 @@
     </div>
   </section>
 
-  <!-- TAB NAV -->
-  <nav class="tab-bar" aria-label="Menu bagian">
-    <div class="tab-inner">
-      <button class="tab-btn active" data-target="jadwal">📅 Jadwal</button>
-      <button class="tab-btn" data-target="alur">🔄 Alur</button>
-      <button class="tab-btn" data-target="dokumen">📄 Dokumen</button>
-      <button class="tab-btn" data-target="kuota">👥 Kuota</button>
-      <button class="tab-btn" data-target="info">ℹ️ Info</button>
-      <button class="tab-btn" data-target="kontak">📞 Kontak</button>
+  <!-- NAV -->
+  <nav class="nav-bar" aria-label="Menu bagian">
+    <div class="nav-inner">
+      <a href="#jadwal" class="nav-link">📅 Jadwal</a>
+      <a href="#alur" class="nav-link">🔄 Alur</a>
+      <a href="#dokumen" class="nav-link">📄 Dokumen</a>
+      <a href="#kuota" class="nav-link">👥 Kuota</a>
+      <a href="#info" class="nav-link">ℹ️ Info</a>
+      <a href="#kontak" class="nav-link">📞 Kontak</a>
     </div>
   </nav>
 
@@ -978,12 +991,12 @@
 
     <!-- KONTAK & LOKASI -->
     <section class="section" id="kontak">
-      <p class="section-title">Kontak &amp; Lokasi</p>
+      <p class="section-title">Kontak</p>
       <div class="card">
         <div class="panitia-title">Panitia SPMB</div>
         <div class="contact-list">
           <div class="contact-row">
-            <div class="avatar">👨</div>
+            <div class="avatar">👨‍💼</div>
             <div>
               <div class="contact-name">Adi Widiyanto</div>
               <div class="contact-phone">📱 085649474998</div>
@@ -991,7 +1004,7 @@
             <a class="contact-wa" href="https://wa.me/6285649474998" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
           <div class="contact-row">
-            <div class="avatar">👩</div>
+            <div class="avatar">👩‍💼</div>
             <div>
               <div class="contact-name">Elly Mastukhah</div>
               <div class="contact-phone">📱 085725729418</div>
@@ -999,7 +1012,7 @@
             <a class="contact-wa" href="https://wa.me/6285725729418" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
           <div class="contact-row">
-            <div class="avatar">👩</div>
+            <div class="avatar">👩‍💼</div>
             <div>
               <div class="contact-name">Isma Winarti</div>
               <div class="contact-phone">📱 085228832767</div>
@@ -1023,32 +1036,6 @@
   </footer>
 
   <script>
-    // ── TAB SHOW/HIDE ──
-    (function () {
-      var tabs    = document.querySelectorAll('.tab-btn');
-      var sections = document.querySelectorAll('.section');
-
-      function showTab(target) {
-        tabs.forEach(function(btn) {
-          btn.classList.toggle('active', btn.dataset.target === target);
-        });
-        sections.forEach(function(sec) {
-          sec.classList.toggle('active', sec.id === target);
-        });
-        // scroll ke atas konten
-        document.querySelector('.main').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-
-      tabs.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          showTab(btn.dataset.target);
-        });
-      });
-
-      // Tampilkan jadwal saat pertama kali
-      showTab('jadwal');
-    })();
-
     // ── BADGE OTOMATIS BERDASARKAN TANGGAL ──
     // Setiap <tr> di tabel jadwal harus memiliki:
     //   data-mulai="YYYY-MM-DD"  dan  data-selesai="YYYY-MM-DD"
@@ -1087,7 +1074,21 @@
       });
     })();
 
+    // ── ACTIVE NAV HIGHLIGHT ON SCROLL ──
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-link');
 
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(function (link) {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+
+    sections.forEach(function (s) { observer.observe(s); });
   </script>
 
 </body>
