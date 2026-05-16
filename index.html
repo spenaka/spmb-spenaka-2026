@@ -289,6 +289,24 @@
       color: #14532D;
     }
 
+    /* Titik hijau berkedip */
+    .jadwal-badge.now::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #16A34A;
+      margin-right: 5px;
+      vertical-align: middle;
+      animation: blink-dot 1.2s ease-in-out infinite;
+    }
+
+    @keyframes blink-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.2; transform: scale(0.7); }
+    }
+
     .jadwal-badge.selesai {
       background: #F1F5F9;
       color: #64748B;
@@ -658,7 +676,7 @@
       <div class="hero-tag">📋 Informasi Penerimaan Murid Baru — Tahun Pelajaran 2026/2027</div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="num">Online &amp; Offline</div>
+          <div class="num">Online</div>
           <div class="lbl">Sistem Pendaftaran</div>
         </div>
         <div class="stat-divider"></div>
@@ -965,6 +983,10 @@
             <span class="info-icon">📱</span>
             <div>Calon murid dapat memilih <strong>maksimal 3 sekolah tujuan</strong> dalam satu kali pendaftaran</div>
           </div>
+          <div class="info-item">
+            <span class="info-icon">🏫</span>
+            <div>Pendaftaran online dapat <strong>dibantu oleh pihak sekolah</strong>, dengan membawa <strong>dokumen persyaratan yang asli</strong>.</div>
+          </div>
         </div>
       </div>
     </section>
@@ -986,26 +1008,26 @@
           <div class="contact-row">
             <div class="avatar">DZ</div>
             <div>
-              <div class="contact-name">Dewi Zulfa Indah</div>
-              <div class="contact-phone">📱 08xxxxxxxxxxx</div>
+              <div class="contact-name">Adi Widiyanto, S.Pd.</div>
+              <div class="contact-phone">📱 085649474998</div>
             </div>
-            <a class="contact-wa" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener">💬 WhatsApp</a>
+            <a class="contact-wa" href="https://wa.me/6285649474998" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
           <div class="contact-row">
             <div class="avatar">EM</div>
             <div>
-              <div class="contact-name">Elly Mastukhah</div>
-              <div class="contact-phone">📱 08xxxxxxxxx</div>
+              <div class="contact-name">Elly Mastukhah, S.Pd.</div>
+              <div class="contact-phone">📱 085725729418</div>
             </div>
-            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">💬 WhatsApp</a>
+            <a class="contact-wa" href="https://wa.me/6285725729418" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
           <div class="contact-row">
             <div class="avatar">IW</div>
             <div>
-              <div class="contact-name">Isma Winarti</div>
-              <div class="contact-phone">📱 08xxxxxxxxx</div>
+              <div class="contact-name">Isma Winarti, S.Psi.</div>
+              <div class="contact-phone">📱 085228832767</div>
             </div>
-            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">💬 WhatsApp</a>
+            <a class="contact-wa" href="https://wa.me/6285228832767" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
         </div>
       </div>
@@ -1043,7 +1065,7 @@
 
         if (today >= mulai && today <= selesai) {
           // Sedang berjalan
-          badge.textContent = '● Sedang Berjalan';
+          badge.textContent = 'Sedang Berjalan';
           badge.className = 'jadwal-badge now';
           badge.style.display = 'inline-block';
           row.classList.add('row-active');
