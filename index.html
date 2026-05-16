@@ -35,7 +35,6 @@
       min-height: 100vh;
     }
 
-    /* ── HERO ── */
     .hero {
       position: relative;
       min-height: 420px;
@@ -106,8 +105,7 @@
     }
 
     .hero-tag {
-      display: block;
-      width: fit-content;
+      display: inline-block;
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.2);
       color: var(--blue-soft);
@@ -144,7 +142,6 @@
       align-self: stretch;
     }
 
-    /* ── HERO DESCRIPTION ── */
     .hero-desc {
       margin-top: 1rem;
       padding: 12px 16px;
@@ -165,7 +162,6 @@
 
     .hero-desc a:hover { text-decoration: underline; }
 
-    /* ── NAV PILLS ── */
     .nav-bar {
       background: var(--white);
       border-bottom: 1px solid var(--border);
@@ -205,7 +201,6 @@
       border-bottom-color: var(--blue-mid);
     }
 
-    /* ── MAIN ── */
     .main {
       max-width: 860px;
       margin: 0 auto;
@@ -269,7 +264,6 @@
     }
 
     .jadwal-table tr:last-child td { border-bottom: none; }
-
     .jadwal-table tr:hover td { background: var(--blue-pale); }
 
     .jadwal-table .date-col {
@@ -279,10 +273,9 @@
       font-size: 13px;
     }
 
+    /* Badge dasar — tersembunyi, ditampilkan oleh JS */
     .jadwal-badge {
-      display: inline-block;
-      background: var(--blue-pale);
-      color: var(--blue-dark);
+      display: none;
       font-size: 10px;
       font-weight: 700;
       padding: 2px 8px;
@@ -294,6 +287,25 @@
     .jadwal-badge.now {
       background: #DCFCE7;
       color: #14532D;
+    }
+
+    .jadwal-badge.selesai {
+      background: #F1F5F9;
+      color: #64748B;
+    }
+
+    /* Baris yang sedang berjalan → highlight ringan */
+    .jadwal-table tr.row-active td {
+      background: #F0FDF4;
+    }
+
+    /* Baris yang sudah selesai → teks sedikit redup */
+    .jadwal-table tr.row-done td {
+      color: var(--text-muted);
+    }
+
+    .jadwal-table tr.row-done .date-col {
+      color: var(--text-muted);
     }
 
     /* ── ALUR STEPS ── */
@@ -334,11 +346,8 @@
       line-height: 1.6;
     }
 
-    .alur-text strong {
-      color: var(--blue-dark);
-    }
+    .alur-text strong { color: var(--blue-dark); }
 
-    /* ── JALUR SUB-LIST ── */
     .jalur-sub {
       display: flex;
       gap: 8px;
@@ -427,15 +436,8 @@
       flex-shrink: 0;
     }
 
-    .doc-tag.wajib {
-      background: #FEF3C7;
-      color: #92400E;
-    }
-
-    .doc-tag.jalur {
-      background: #EDE9FE;
-      color: #4C1D95;
-    }
+    .doc-tag.wajib { background: #FEF3C7; color: #92400E; }
+    .doc-tag.jalur { background: #EDE9FE; color: #4C1D95; }
 
     /* ── KUOTA ── */
     .kuota-grid {
@@ -501,16 +503,11 @@
     }
 
     .domisili-row:last-child { border-bottom: none; padding-bottom: 0; }
-
     .domisili-row .dname { color: var(--text-primary); font-weight: 500; }
     .domisili-row .dpct { font-weight: 700; color: var(--blue-mid); }
 
     /* ── INFO TAMBAHAN ── */
-    .info-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .info-list { display: flex; flex-direction: column; gap: 8px; }
 
     .info-item {
       display: flex;
@@ -525,11 +522,7 @@
       line-height: 1.5;
     }
 
-    .info-icon {
-      font-size: 18px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    .info-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 
     /* ── KONTAK ── */
     .address-row {
@@ -555,11 +548,7 @@
       flex-shrink: 0;
     }
 
-    .address-text p {
-      font-size: 14px;
-      color: var(--text-primary);
-      line-height: 1.7;
-    }
+    .address-text p { font-size: 14px; color: var(--text-primary); line-height: 1.7; }
 
     .address-text .label {
       font-size: 11px;
@@ -605,17 +594,8 @@
       flex-shrink: 0;
     }
 
-    .contact-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-primary);
-    }
-
-    .contact-phone {
-      font-size: 13px;
-      color: var(--text-secondary);
-      margin-top: 2px;
-    }
+    .contact-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .contact-phone { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
 
     .contact-wa {
       margin-left: auto;
@@ -634,7 +614,6 @@
 
     .contact-wa:hover { opacity: 0.85; }
 
-    /* ── FOOTER ── */
     footer {
       background: var(--blue-dark);
       color: var(--blue-soft);
@@ -646,7 +625,6 @@
 
     footer strong { color: #fff; }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .hero-content { padding: 2rem 1.25rem 2rem; }
       .main { padding: 1.5rem 1.25rem 2.5rem; }
@@ -677,10 +655,10 @@
           <p>Desa Sangen, Kecamatan Kajoran,<br> Kab. Magelang</p>
         </div>
       </div>
-      <div class="hero-tag">📋 Informasi Penerimaan Murid Baru <br>   Tahun Pelajaran 2026/2027</div>
+      <div class="hero-tag">📋 Informasi Penerimaan Murid Baru — Tahun Pelajaran 2026/2027</div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="num">Online & Offline</div>
+          <div class="num">Online &amp; Offline</div>
           <div class="lbl">Sistem Pendaftaran</div>
         </div>
         <div class="stat-divider"></div>
@@ -727,41 +705,53 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-mulai="2026-03-30" data-selesai="2026-06-10">
               <td>
                 Pra SPMB &amp; Verifikasi Biodata
-                <br><span class="jadwal-badge now">Sedang Berjalan</span>
+                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
               </td>
               <td class="date-col">30 Mar – 10 Jun 2026</td>
             </tr>
-            <tr>
-              <td>Verifikasi Prestasi</td>
+            <tr data-mulai="2026-05-04" data-selesai="2026-05-26">
+              <td>
+                Verifikasi Prestasi
+                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+              </td>
               <td class="date-col">4 – 26 Mei 2026</td>
             </tr>
-            <tr>
-              <td>Pengumuman &amp; Sanggah Prestasi</td>
+            <tr data-mulai="2026-05-27" data-selesai="2026-05-29">
+              <td>
+                Pengumuman &amp; Sanggah Prestasi
+                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+              </td>
               <td class="date-col">27 – 29 Mei 2026</td>
             </tr>
-            <tr>
+            <tr data-mulai="2026-06-08" data-selesai="2026-06-10">
               <td>
                 Pendaftaran &amp; Verifikasi SMP
-                <br><span class="jadwal-badge">Pendaftaran</span>
+                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
               </td>
               <td class="date-col">8 – 10 Jun 2026</td>
             </tr>
-            <tr>
-              <td>Analisis Penerimaan</td>
+            <tr data-mulai="2026-06-11" data-selesai="2026-06-11">
+              <td>
+                Analisis Penerimaan
+                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+              </td>
               <td class="date-col">11 Jun 2026</td>
             </tr>
-            <tr>
+            <tr data-mulai="2026-06-12" data-selesai="2026-06-12">
               <td>
                 Pengumuman Hasil Seleksi
-                <br><span class="jadwal-badge">Pengumuman</span>
+                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
               </td>
               <td class="date-col">12 Jun 2026</td>
             </tr>
-            <tr>
-              <td>Daftar Ulang</td>
+            <tr data-mulai="2026-06-12" data-selesai="2026-06-15">
+              <td>
+                Daftar Ulang
+                <br><span class="jadwal-badge now">● Sedang Berjalan</span>
+              </td>
               <td class="date-col">12 – 15 Jun 2026</td>
             </tr>
           </tbody>
@@ -774,21 +764,18 @@
       <p class="section-title">Alur Pendaftaran</p>
       <div class="card">
         <div class="alur-list">
-
           <div class="alur-item">
             <div class="alur-num">1</div>
             <div class="alur-text">
               Akses website resmi <strong><a href="https://spmb.magelangkab.go.id" target="_blank" rel="noopener" style="color:var(--blue-mid);text-decoration:none;">spmb.magelangkab.go.id</a></strong>
             </div>
           </div>
-
           <div class="alur-item">
             <div class="alur-num">2</div>
             <div class="alur-text">
               Login menggunakan data yang terdaftar pada <strong>Dapodik / EMIS</strong>
             </div>
           </div>
-
           <div class="alur-item" style="flex-direction: column; gap: 8px;">
             <div style="display:flex;align-items:flex-start;gap:14px;">
               <div class="alur-num">3</div>
@@ -801,42 +788,26 @@
               <span class="jalur-pill">🏆 Prestasi</span>
             </div>
           </div>
-
           <div class="alur-item">
             <div class="alur-num">4</div>
-            <div class="alur-text">
-              Pilih <strong>maksimal 3 sekolah tujuan</strong>
-            </div>
+            <div class="alur-text">Pilih <strong>maksimal 3 sekolah tujuan</strong></div>
           </div>
-
           <div class="alur-item">
             <div class="alur-num">5</div>
-            <div class="alur-text">
-              Unggah <strong>dokumen persyaratan</strong> yang dibutuhkan
-            </div>
+            <div class="alur-text">Unggah <strong>dokumen persyaratan</strong> yang dibutuhkan</div>
           </div>
-
           <div class="alur-item">
             <div class="alur-num">6</div>
-            <div class="alur-text">
-              Tunggu proses <strong>verifikasi</strong> oleh panitia
-            </div>
+            <div class="alur-text">Tunggu proses <strong>verifikasi</strong> oleh panitia</div>
           </div>
-
           <div class="alur-item">
             <div class="alur-num">7</div>
-            <div class="alur-text">
-              Pantau <strong>hasil seleksi</strong> secara online
-            </div>
+            <div class="alur-text">Pantau <strong>hasil seleksi</strong> secara online</div>
           </div>
-
           <div class="alur-item">
             <div class="alur-num">8</div>
-            <div class="alur-text">
-              Lakukan <strong>daftar ulang</strong> bagi yang diterima (12–15 Juni 2026)
-            </div>
+            <div class="alur-text">Lakukan <strong>daftar ulang</strong> bagi yang diterima (12–15 Juni 2026)</div>
           </div>
-
         </div>
       </div>
     </section>
@@ -846,7 +817,6 @@
       <p class="section-title">Persyaratan Dokumen</p>
       <div class="card">
 
-        <!-- Umum -->
         <div class="doc-group-title"><span class="dot"></span>Persyaratan Umum</div>
         <div class="doc-list">
           <div class="doc-item">
@@ -883,7 +853,6 @@
           </div>
         </div>
 
-        <!-- Jalur Prestasi -->
         <div class="doc-group-title"><span class="dot" style="background:#7C3AED;"></span>Jalur Prestasi</div>
         <div class="doc-list">
           <div class="doc-item" style="border: 1px dashed #7C3AED20; background: #FAF5FF;">
@@ -892,11 +861,9 @@
               <div class="doc-title">Piagam Penghargaan / Sertifikat Prestasi</div>
               <div class="doc-note">Bukti prestasi akademik maupun non-akademik</div>
             </div>
-            
           </div>
         </div>
 
-        <!-- Jalur Afirmasi -->
         <div class="doc-group-title"><span class="dot" style="background:#D97706;"></span>Jalur Afirmasi Disabilitas</div>
         <div class="doc-list">
           <div class="doc-item" style="border: 1px dashed #D9770620; background: #FFFBEB;">
@@ -905,11 +872,9 @@
               <div class="doc-title">Kartu Disabilitas / Surat Keterangan Dokter</div>
               <div class="doc-note">Bukti kondisi disabilitas dari instansi resmi atau tenaga medis</div>
             </div>
-            
           </div>
         </div>
 
-        <!-- Jalur Mutasi -->
         <div class="doc-group-title"><span class="dot" style="background:#059669;"></span>Jalur Mutasi</div>
         <div class="doc-list">
           <div class="doc-item" style="border: 1px dashed #05996920; background: #F0FDF4;">
@@ -918,7 +883,6 @@
               <div class="doc-title">Surat Pindah Tugas Orang Tua/Wali</div>
               <div class="doc-note">Surat resmi dari instansi/perusahaan terkait</div>
             </div>
-            
           </div>
           <div class="doc-item" style="border: 1px dashed #05996920; background: #F0FDF4;">
             <div class="doc-icon" style="background: #DCFCE7;">📍</div>
@@ -926,7 +890,6 @@
               <div class="doc-title">Surat Keterangan Domisili Pindah Tugas</div>
               <div class="doc-note">Keterangan domisili baru dari kelurahan/desa setempat</div>
             </div>
-            
           </div>
         </div>
 
@@ -1008,7 +971,7 @@
 
     <!-- KONTAK & LOKASI -->
     <section class="section" id="kontak">
-      <p class="section-title">Kontak & Lokasi</p>
+      <p class="section-title">Kontak &amp; Lokasi</p>
       <div class="card">
         <div class="address-row">
           <div class="address-icon">🏫</div>
@@ -1020,47 +983,36 @@
 
         <div class="panitia-title">Panitia SPMB</div>
         <div class="contact-list">
-
           <div class="contact-row">
             <div class="avatar">DZ</div>
             <div>
               <div class="contact-name">Dewi Zulfa Indah</div>
               <div class="contact-phone">📱 08xxxxxxxxxxx</div>
             </div>
-            <a class="contact-wa" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener">
-              💬 WhatsApp
-            </a>
+            <a class="contact-wa" href="https://wa.me/628xxxxxxxxxx" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
-
           <div class="contact-row">
             <div class="avatar">EM</div>
             <div>
               <div class="contact-name">Elly Mastukhah</div>
               <div class="contact-phone">📱 08xxxxxxxxx</div>
             </div>
-            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">
-              💬 WhatsApp
-            </a>
+            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
-
           <div class="contact-row">
             <div class="avatar">IW</div>
             <div>
               <div class="contact-name">Isma Winarti</div>
               <div class="contact-phone">📱 08xxxxxxxxx</div>
             </div>
-            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">
-              💬 WhatsApp
-            </a>
+            <a class="contact-wa" href="https://wa.me/628xxxxxxxxx" target="_blank" rel="noopener">💬 WhatsApp</a>
           </div>
-
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <strong>SMP Negeri 1 Kajoran</strong><br>
     Desa Sangen, Kec. Kajoran, Kab. Magelang 56163<br><br>
@@ -1072,21 +1024,59 @@
   </footer>
 
   <script>
-    // Active nav highlight on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    // ── BADGE OTOMATIS BERDASARKAN TANGGAL ──
+    // Setiap <tr> di tabel jadwal harus memiliki:
+    //   data-mulai="YYYY-MM-DD"  dan  data-selesai="YYYY-MM-DD"
+    (function () {
+      // Ambil tanggal hari ini (jam 00:00:00 agar perbandingan akurat)
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      var rows = document.querySelectorAll('.jadwal-table tbody tr[data-mulai]');
+
+      rows.forEach(function (row) {
+        var mulai   = new Date(row.dataset.mulai);
+        var selesai = new Date(row.dataset.selesai);
+        selesai.setHours(23, 59, 59, 999); // akhir hari selesai
+
+        var badge = row.querySelector('.jadwal-badge');
+
+        if (today >= mulai && today <= selesai) {
+          // Sedang berjalan
+          badge.textContent = '● Sedang Berjalan';
+          badge.className = 'jadwal-badge now';
+          badge.style.display = 'inline-block';
+          row.classList.add('row-active');
+
+        } else if (today > selesai) {
+          // Sudah selesai
+          badge.textContent = '✓ Selesai';
+          badge.className = 'jadwal-badge selesai';
+          badge.style.display = 'inline-block';
+          row.classList.add('row-done');
+
+        } else {
+          // Belum dimulai — badge tersembunyi
+          badge.style.display = 'none';
+        }
+      });
+    })();
+
+    // ── ACTIVE NAV HIGHLIGHT ON SCROLL ──
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-link');
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          navLinks.forEach(link => {
+          navLinks.forEach(function (link) {
             link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
           });
         }
       });
     }, { rootMargin: '-30% 0px -60% 0px' });
 
-    sections.forEach(s => observer.observe(s));
+    sections.forEach(function (s) { observer.observe(s); });
   </script>
 
 </body>
